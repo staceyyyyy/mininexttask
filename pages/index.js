@@ -60,7 +60,7 @@ function Home() {
       <Head>
       <title>E-COMMERCE</title>
      </Head>
-     <Navbar/>
+     <Navbar/>  
       {/* <AppBar position="static"style={{ background: '#e2b5bb'}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>

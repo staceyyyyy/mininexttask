@@ -57,3 +57,13 @@
   /* flex-direction: column; */
   /* justify-content: center; */
 }
+.pageContainer {
+  background-color: #EFDADD;
+  flex: 1;
+  display: flex;
+  text-align:center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color:#000;
+}

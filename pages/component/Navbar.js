@@ -1,45 +1,44 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import Link from 'next/link'
-
 import {
-    Tooltip,Grid,Box,Chip,Button,
-    AppBar,Container,Toolbar,Menu,MenuItem,Avatar,
-    IconButton,Typography
+    Tooltip,Box,Button,
+    AppBar,Container,Toolbar,
+    IconButton
   } from '@mui/material';
-  import ShoppingCart from '@mui/icons-material/ShoppingCart';
-  export const DEFAULT_ATRIBUTE_CATEGORIES_FR = gql`
-  fragment defaultAtributeCategoriesFr on CategoryTree {
+import ShoppingCart from '@mui/icons-material/ShoppingCart';
+export const DEFAULT_ATRIBUTE_CATEGORIES_FR = gql`
+    fragment defaultAtributeCategoriesFr on CategoryTree {
     id
     name
     og_image
     url_key
     url_path
     description
-  }
+    }
 `
 export const GET_CATEGORIES = gql`
-query getCategories{
-  categories{
-    items{
-      id
-      name
-      description
-      children{
+    query getCategories{
+    categories{
+        items{
         id
         name
         description
-        url_key
-        products{
-          total_count
+        children{
+            id
+            name
+            description
+            url_key
+            products{
+            total_count
+            }
+            include_in_menu
+            popular_icon
         }
-        include_in_menu
-        popular_icon
-      }
+        }
+        total_count
     }
-    total_count
-  }
-}
+    }
 `
 export default function Navbar() {
     const { loading, error, data } = useQuery(GET_CATEGORIES);
@@ -66,9 +65,11 @@ export default function Navbar() {
             </Box>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="My Cart">
-                <IconButton sx={{ p: 0 }}>
-                  <ShoppingCart style={{color: "white"}} />
-                </IconButton>
+                <Link href={`/component/myCart`}>
+                  <IconButton sx={{ p: 0 }}>
+                    <ShoppingCart style={{color: "white"}} />
+                  </IconButton>
+                </Link>
               </Tooltip>
             </Box>
           </Toolbar>

@@ -5,8 +5,11 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import {
   Tooltip,Grid,Box,Chip,
   CircularProgress,IconButton,Typography,
-  Card,CardActions,CardContent,CardMedia
+  Card,CardActions,CardContent,CardMedia,
+  Container
 } from '@mui/material';
+import Navbar from '../../component/Navbar'
+
 export const GET_PRODUCT = gql`
   query getProduct($urlKey: String) {
     products(filter: {
@@ -44,6 +47,7 @@ export const GET_PRODUCT = gql`
 `
 const productName = () => {
   const router = useRouter()
+  // let myCart = localStorage.setItem('myCart')
   const productName = router.query.productName
   const { loading, error, data } = useQuery(GET_PRODUCT,{
     variables: {
@@ -56,15 +60,15 @@ const productName = () => {
   function createMarkup() {
     return {__html: productDetail[0].description.html};
   }
-  console.log("nameP", productName)
-  console.log("res", productDetail)
-  console.log("product",data.products.items[0])
-  console.log("price", productDetail[0].price_range.maximum_price.final_price.value)
+  const addProductToCart = ()=> {
+    localStorage.setItem('myCart', productName)
+    console.log('added',productName)
+  }
     return (
-        <div>
-            <a href="/" className={styles.ref}>Back to Menu</a>
+      <div>
+        <Navbar/>
             {productDetail.map((product,index)=> (
-              <Box sx={{ flexGrow: 1 }} key={index}>
+              <Box sx={{ flexGrow: 1 }} key={index} style={{marginTop:"3rem"}}>
               <Grid container spacing={2}>
                 <Grid item xs={4}>
                 <Card>
@@ -72,12 +76,14 @@ const productName = () => {
                   component="img"
                   image={product.image.url}
                   alt={product.name}
-                />
+                  height="440"
+                  width="300"
+                  />
               </Card>
                 </Grid>
                 <Grid item xs={4}>
                 <CardContent>
-                  <Typography>
+                  <Typography variant="h6" display="block" gutterBottom>
                     {product.name}
                   </Typography>
                   <Typography variant="overline" display="block" gutterBottom>
@@ -85,7 +91,7 @@ const productName = () => {
                   </Typography>
                   {product.categories.map((cat,index)=> (
                     <Chip label={cat.name} size="small" variant="outlined" key={index}/>
-                  ))}
+                    ))}
                 </CardContent>
                 <CardContent>
                 <Typography variant="caption" color="text.secondary">
@@ -95,7 +101,7 @@ const productName = () => {
                 <CardActions disableSpacing>
                 <Tooltip title="Add to Cart">
                   <IconButton aria-label="add to cart">
-                    <AddShoppingCartIcon />
+                    <AddShoppingCartIcon onClick={addProductToCart}/>
                   </IconButton>
                   </Tooltip>
                 </CardActions>

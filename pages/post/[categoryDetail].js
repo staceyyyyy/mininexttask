@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router'
-import styles from '../../styles/Home.module.css'
 import Link from 'next/link'
-import Image from 'next/image'
+import styles from '../../styles/Home.module.css'
 import { useQuery, gql } from '@apollo/client'
+import Navbar from '../component/Navbar'
 import {
-  Grid,Card,CardMedia,Container
+  Grid,Card,CardMedia,Container,Typography
 } from '@mui/material';
-
 export const GET_CATEGORY_PRODUCTS = gql`
   query getCategoryProducts($categoryId: Int) {
     category(id: $categoryId){
@@ -40,7 +39,6 @@ export const GET_CATEGORY_PRODUCTS = gql`
     }
   }
 `
-
 const CategoryDetail = () => {
   const router = useRouter()
   const id = router.query.categoryDetail
@@ -53,9 +51,11 @@ const CategoryDetail = () => {
     if (loading) return <p>Loading...</p>
     if (error) return <p>Error :(</p>
     return (
-        <div className={styles.main}>
-          <h1>{res.category.name}</h1>
-          <a href="/" className={styles.ref}>Back to Menu</a>
+        <div className={styles.pageContainer}>
+          <Navbar/>
+          <Typography variant="h4" gutterBottom component="div">
+            {res.category.name}
+          </Typography>
           <Container maxWidth="xl">
           <Grid container spacing={3} columns={16}>
           {res.category.products.items.map((product)=> (
@@ -75,19 +75,8 @@ const CategoryDetail = () => {
             </Grid>
           ))}
         </Grid>
-        </Container>
-         
-        </div>
-    )
+      </Container>
+    </div>
+  )
 }
-// export async function getServerSideProps (ctx) {
-//   // console.log("ctxparamMenu",ctx.params)
-//   const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${ctx.params.categoryDetail}`) 
-//   const datas = await res.json()
-//   // console.log("datas",datas.meals)
-//   return { 
-//     props : { detail: datas.meals }
-//   }
-// }
-
 export default CategoryDetail
