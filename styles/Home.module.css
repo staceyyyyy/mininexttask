@@ -5,17 +5,19 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  color:#ff6d85;
+  background-color: #e2b5bb;
 }
 .card {
   margin: 1rem;
   padding: 1.5rem;
-  box-shadow: 10px 10px #ff6021;
+  box-shadow: 5px 8px #e2b5bb;
   border-radius: 10px;
   transition: transform .5s;
   cursor:pointer;
-  width:350px;
-  background-color: #fff;
-  color:#ff6021;
+  width:300px;
+  height:400px;
+  background-color: #000;
 }
 .card:hover {
   transform: scale(1.1);
@@ -40,9 +42,18 @@
 .ref:hover {
   color: #ff6021;
 }
-.detail {
-  width:100%;
+.product {
+  width:200px;
+  text-align: left;
+
 }
-.detail:hover {
+.product:hover {
   transform: none;
+}
+.productContainer {
+  text-align: left;
+  /* display: flex; */
+  /* text-align:center; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
 }
