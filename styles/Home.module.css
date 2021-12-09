@@ -52,10 +52,6 @@
 }
 .productContainer {
   text-align: left;
-  /* display: flex; */
-  /* text-align:center; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
 }
 .pageContainer {
   background-color: #EFDADD;
@@ -65,5 +61,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color:#000;
+}
+.cartCard {
+  width: 150px;
+  height:200px;
+  box-shadow: 1px 1px #e2b5bb;
+}
+.contentContainer {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  flex: 1;
+  display: flex;
+  text-align:center;
+  flex-direction: column;
+  justify-content: center;
   color:#000;
 }
