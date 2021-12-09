@@ -4,7 +4,7 @@ import styles from '../../styles/Home.module.css'
 import { useQuery, gql } from '@apollo/client'
 import Navbar from '../component/Navbar'
 import {
-  Grid,Card,CardMedia,Container,Typography
+  Grid,Card,CardMedia,Container,Typography,CircularProgress
 } from '@mui/material';
 export const GET_CATEGORY_PRODUCTS = gql`
   query getCategoryProducts($categoryId: Int) {
@@ -48,7 +48,7 @@ const CategoryDetail = () => {
     }
   })
     const res = data
-    if (loading) return <p>Loading...</p>
+    if (loading) return <CircularProgress />
     if (error) return <p>Error :(</p>
     return (
         <div className={styles.pageContainer}>
