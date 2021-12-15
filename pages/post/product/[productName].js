@@ -68,12 +68,13 @@ const productName = () => {
     let myCart = []
     myCart = JSON.parse(localStorage.getItem('myCart')) || [];
     // Push the new data (whether it be an object or anything else) onto the array
-    myCart.push(productDetail);
+    myCart.push(productDetail[0]);
     // Alert the array value
     // Re-serialize the array back into a string and store it in localStorage
     localStorage.setItem('myCart', JSON.stringify(myCart));
     setOpen(true)
   }
+  console.log("p",productDetail)
   const handleClose = () => {
     setOpen(false);
   };

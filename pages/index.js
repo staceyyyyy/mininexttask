@@ -2,9 +2,8 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Image from 'next/image'
 import { useQuery, gql } from '@apollo/client'
-import {Typography} from '@mui/material';
 import Navbar from './component/Navbar'
-
+import {CircularProgress,Typography} from '@mui/material';
 export const DEFAULT_ATRIBUTE_CATEGORIES_FR = gql`
   fragment defaultAtributeCategoriesFr on CategoryTree {
     id
